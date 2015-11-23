@@ -8,15 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		FFB9787E1BF1D56A003932CC /* WestPacCodingTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB9787D1BF1D56A003932CC /* WestPacCodingTestTests.m */; };
-		FFB978861BF1D5C4003932CC /* ViewControllerUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB978851BF1D5C4003932CC /* ViewControllerUnitTest.m */; settings = {ASSET_TAGS = (); }; };
+		FFB978861BF1D5C4003932CC /* ViewControllerUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB978851BF1D5C4003932CC /* ViewControllerUnitTest.m */; };
 		FFD29D621BF0AF88001B0460 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD29D611BF0AF88001B0460 /* main.m */; };
 		FFD29D651BF0AF88001B0460 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD29D641BF0AF88001B0460 /* AppDelegate.m */; };
 		FFD29D681BF0AF88001B0460 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD29D671BF0AF88001B0460 /* ViewController.m */; };
 		FFD29D6B1BF0AF88001B0460 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFD29D691BF0AF88001B0460 /* Main.storyboard */; };
 		FFD29D6D1BF0AF88001B0460 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFD29D6C1BF0AF88001B0460 /* Assets.xcassets */; };
 		FFD29D701BF0AF88001B0460 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFD29D6E1BF0AF88001B0460 /* LaunchScreen.storyboard */; };
-		FFD29D791BF0C9FB001B0460 /* WeatherForecastModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD29D781BF0C9FB001B0460 /* WeatherForecastModel.m */; settings = {ASSET_TAGS = (); }; };
-		FFD29D7D1BF0CA72001B0460 /* WeatherForecastServiceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD29D7C1BF0CA72001B0460 /* WeatherForecastServiceHandler.m */; settings = {ASSET_TAGS = (); }; };
+		FFD29D791BF0C9FB001B0460 /* WeatherForecastModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD29D781BF0C9FB001B0460 /* WeatherForecastModel.m */; };
+		FFD29D7D1BF0CA72001B0460 /* WeatherForecastServiceHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = FFD29D7C1BF0CA72001B0460 /* WeatherForecastServiceHandler.m */; };
+		FFEF00741C030CB200AD7FE2 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = FFEF00731C030CB200AD7FE2 /* default.png */; };
+		FFEF00781C0334B600AD7FE2 /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = FFEF00751C0334B600AD7FE2 /* cloud.png */; };
+		FFEF00791C0334B600AD7FE2 /* rain.png in Resources */ = {isa = PBXBuildFile; fileRef = FFEF00761C0334B600AD7FE2 /* rain.png */; };
+		FFEF007A1C0334B600AD7FE2 /* sun.png in Resources */ = {isa = PBXBuildFile; fileRef = FFEF00771C0334B600AD7FE2 /* sun.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		FFD29D7B1BF0CA72001B0460 /* WeatherForecastServiceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherForecastServiceHandler.h; path = Services/WeatherForecastServiceHandler.h; sourceTree = "<group>"; };
 		FFD29D7C1BF0CA72001B0460 /* WeatherForecastServiceHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherForecastServiceHandler.m; path = Services/WeatherForecastServiceHandler.m; sourceTree = "<group>"; };
 		FFD29D821BF0CF67001B0460 /* WeatherForecastConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WeatherForecastConstants.h; path = Utilities/WeatherForecastConstants.h; sourceTree = "<group>"; };
+		FFEF00731C030CB200AD7FE2 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		FFEF00751C0334B600AD7FE2 /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.png; sourceTree = "<group>"; };
+		FFEF00761C0334B600AD7FE2 /* rain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rain.png; sourceTree = "<group>"; };
+		FFEF00771C0334B600AD7FE2 /* sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sun.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +135,10 @@
 		FFD29D601BF0AF88001B0460 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FFEF00751C0334B600AD7FE2 /* cloud.png */,
+				FFEF00761C0334B600AD7FE2 /* rain.png */,
+				FFEF00771C0334B600AD7FE2 /* sun.png */,
+				FFEF00731C030CB200AD7FE2 /* default.png */,
 				FFD29D611BF0AF88001B0460 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -262,8 +274,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFEF00791C0334B600AD7FE2 /* rain.png in Resources */,
+				FFEF007A1C0334B600AD7FE2 /* sun.png in Resources */,
+				FFEF00781C0334B600AD7FE2 /* cloud.png in Resources */,
 				FFD29D701BF0AF88001B0460 /* LaunchScreen.storyboard in Resources */,
 				FFD29D6D1BF0AF88001B0460 /* Assets.xcassets in Resources */,
+				FFEF00741C030CB200AD7FE2 /* default.png in Resources */,
 				FFD29D6B1BF0AF88001B0460 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,6 +478,7 @@
 				FFB978841BF1D56A003932CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FFD29D581BF0AF88001B0460 /* Build configuration list for PBXProject "WestPacCodingTest" */ = {
 			isa = XCConfigurationList;

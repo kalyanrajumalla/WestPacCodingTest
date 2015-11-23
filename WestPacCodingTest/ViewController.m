@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *temperaturreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *humidityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ozoneLabel;
+@property (nonatomic,strong) NSDictionary *backgroundImageKeysDict;
 @property (nonatomic,strong) CLLocationManager *clLocationManager;
 @property (nonatomic,strong) NSString* currentLocationCoordinates;
 @property (nonatomic,strong) WeatherForecastServiceHandler *serviceHandler;
@@ -22,6 +23,10 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 - (IBAction)refreshWeatherForecastView:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (weak, nonatomic) IBOutlet UILabel *ozoneTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *humidityTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *temperatureTitleLabel;
 
 @end
 
@@ -32,6 +37,10 @@
     [super viewDidLoad];
     self.serviceHandler = [WeatherForecastServiceHandler WFSHsharedInstance];
     [self initializeAllWFAttributes];
+    [self initializeBackGroundImagesDict];
+    [self hideAllTitleLabels];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     if ([self.clLocationManager respondsToSelector:@selector(requestAlwaysAuthorization)])
     {
@@ -80,6 +89,34 @@
 
 /*
  
+ Method Name  : showAllTitleLabels
+ Description  : to displays the titles
+ 
+ */
+
+-(void)showAllTitleLabels
+{
+    self.temperatureTitleLabel.hidden = NO;
+    self.humidityTitleLabel.hidden = NO;
+    self.ozoneTitleLabel.hidden = NO;
+}
+/*
+ 
+ Method Name  : hideAllTitleLabels
+ Description  : to hide the titles
+ 
+ */
+
+-(void)hideAllTitleLabels
+{
+    self.temperatureTitleLabel.hidden = YES;
+    self.humidityTitleLabel.hidden = YES;
+    self.ozoneTitleLabel.hidden = YES;
+}
+
+
+/*
+ 
  Method Name  : initializeAllWFAttributes
  Description  : to initialize view attribtes
  
@@ -94,6 +131,17 @@
     self.ozoneLabel.text        = @"";
 }
 
+/*
+ 
+ Method Name  : initializeBackGroundImagesDict
+ Description  : to initialize view background images dictionary
+ 
+ */
+
+-(void)initializeBackGroundImagesDict
+{
+    _backgroundImageKeysDict = [NSDictionary dictionaryWithObjectsAndKeys:kCloudImageName,kPartlyCloudyNight,kCloudImageName,kPartlyCloudyDay,kRainImageName,kRain,kDefaultImage,kClearNight,kSunnyImageName,kClearDay, nil];
+}
 
 
 #pragma mark -- CLLocationManager Delegate Methods
@@ -178,6 +226,7 @@
     currWeatherModel.temperature = currentValuesDict[kTemperature];
     currWeatherModel.humidity = currentValuesDict[kHumidity];
     currWeatherModel.ozone = currentValuesDict[kOzone];
+    currWeatherModel.icon = currentValuesDict[kIcon];
     return currWeatherModel;
 }
 
@@ -193,11 +242,42 @@
 {
     self.timeZoneLabel.text = weatherForecastModel.timeZone;
     self.summaryLabel.text = weatherForecastModel.summary;
-    self.temperaturreLabel.text = [NSString stringWithFormat:@"%@",weatherForecastModel.temperature];
+    self.temperaturreLabel.attributedText= [self attributedStringforFirstname:[NSString stringWithFormat:@"%@",weatherForecastModel.temperature] lastName:@"F"];
     self.humidityLabel.text = [NSString stringWithFormat:@"%@",weatherForecastModel.humidity];
     self.ozoneLabel.text = [NSString stringWithFormat:@"%@",weatherForecastModel.ozone];
+    if ([[_backgroundImageKeysDict allKeys] containsObject:weatherForecastModel.icon])
+    {
+        self.backgroundImageView.image = [UIImage imageNamed:[_backgroundImageKeysDict valueForKey:weatherForecastModel.icon]];
+    } else
+    {
+        self.backgroundImageView.image = [UIImage imageNamed:kDefaultImage];
+    }
 
 }
+
+/*
+ 
+ Method Name  : attributedStringforFirstname
+ Parameters   : header and value
+ Description  : to display the temperature in appropriate manner.
+ 
+ */
+
+
+-(NSMutableAttributedString *)attributedStringforFirstname:(NSString *)header lastName:(NSString *)value{
+    NSMutableAttributedString *attributedName;
+    NSRange boldedRange;
+    
+    NSString *str = [NSString stringWithFormat:@"%@%@",header,value];
+    attributedName = [[NSMutableAttributedString alloc] initWithString:str];
+    boldedRange = NSMakeRange([header length], [value length]);
+    [attributedName addAttribute: NSFontAttributeName value:[UIFont fontWithName:@"Helvetica Neue" size:16] range:boldedRange];
+    UIFont *fnt = [UIFont fontWithName:@"Helvetica Neue" size:16];
+    [attributedName setAttributes:@{NSFontAttributeName : [fnt fontWithSize:20]
+                                      , NSBaselineOffsetAttributeName : @60} range:NSMakeRange([header length], [value length])];
+    return attributedName;
+}
+
 
 #pragma mark -- Webservice Delegate Methods
 /*
@@ -226,6 +306,7 @@
 - (void) didFinishDownloadWithResponse:(NSDictionary *)responseObj
 {
     self.activityIndicator.hidden = YES;
+    [self showAllTitleLabels];
     [self setViewAttributes:[self parseResponse:responseObj]];
 }
 
@@ -242,6 +323,7 @@
 {
     self.activityIndicator.hidden = NO;
     [self initializeAllWFAttributes];
+    [self hideAllTitleLabels];
     [self.clLocationManager startUpdatingLocation];
 }
 @end

@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSString* temperature;
 @property (nonatomic, strong) NSString* humidity;
 @property (nonatomic, strong) NSString* ozone;
+@property (nonatomic, strong) NSString* icon;
 
 @end
